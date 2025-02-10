@@ -24,16 +24,17 @@ func main() {
 		 log.Fatal(err)
 	 }
 
-	 // Realizar migração automática e criar a tabela.
+	 // Realizar migração e criar a tabela.
 	 db.AutoMigrate(&Person{})
 
 	 app := fiber.New()
 
-	 // Definindo a rota GET
+	 // Testando uma rota GET
 	 app.Get("/", func(c *fiber.Ctx) error {
 		 return c.SendString("Hello, World 👋!")
 	 })
- 	 // Definindo a rota POST
+
+ 	 // Definindo uma rota POST
 	 app.Post("/people", func(c *fiber.Ctx) error {
 		person := new(Person)
 		if err := c.BodyParser(person); err != nil {
@@ -43,7 +44,7 @@ func main() {
 		return c.JSON(person)
 	 })
 
-	 // Criar um novo registro de pessoa
+	//  Criar um novo registro de pessoa
 	//  person := Person{
 	// 	 Name: "João da Silva",
 	// 	 Age:  30,
